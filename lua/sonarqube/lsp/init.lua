@@ -11,6 +11,7 @@ local log_levels = {
 M.setup = function(opts)
     -- stylua: ignore start
     if opts.go.enabled then require("sonarqube.go").setup(opts.go) end
+    if opts.python.enabled then require("sonarqube.python").setup(opts.python) end
     -- stylua: ignore end
 
     require("sonarqube.rules").setup(opts.rules)

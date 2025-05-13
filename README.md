@@ -3,6 +3,7 @@
 
 **Key Features:**
 - [x] Go support
+- [x] Python support
 
 # Configuration
 ```lua
@@ -15,9 +16,11 @@ require('sonarqube').setup({
             "-stdio",
             "-analyzers",
             "/path/to/analyzers/go.jar",
+            "/path/to/analyzers/python.jar",
         },
     },
-    go = { enabled = true, },
+    go = { enabled = true },
+    python = { enabled = true },
 })
 ```
 
