@@ -26,6 +26,9 @@ local default = {
     python = {
         enabled = true,
     },
+    xml = {
+        enabled = true,
+    },
 }
 
 local config = default
