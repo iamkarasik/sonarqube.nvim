@@ -26,6 +26,9 @@ local default = {
     python = {
         enabled = true,
     },
+    text = {
+        enabled = true,
+    },
     xml = {
         enabled = true,
     },

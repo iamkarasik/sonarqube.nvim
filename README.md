@@ -8,6 +8,7 @@
 - [x] Java support
 - [x] JavaScript support
 - [x] Python support
+- [x] Text support
 - [x] XML support
 
 # Configuration
@@ -26,6 +27,7 @@ require('sonarqube').setup({
             "/path/to/analyzers/java.jar",
             "/path/to/analyzers/javascript.jar",
             "/path/to/analyzers/python.jar",
+            "/path/to/analyzers/text.jar",
             "/path/to/analyzers/xml.jar",
         },
         log_level = "OFF",
@@ -51,6 +53,9 @@ require('sonarqube').setup({
     },
     python = {
         enabled = true 
+    },
+    text = {
+        enabled = true,
     },
     xml = {
         enabled = true,
