@@ -3,6 +3,7 @@
 
 **Key Features:**
 - [x] Go support
+- [x] Html support
 - [x] Java support
 - [x] JavaScript support
 - [x] Python support
@@ -18,13 +19,18 @@ require('sonarqube').setup({
             "-stdio",
             "-analyzers",
             "/path/to/analyzers/go.jar",
+            "/path/to/analyzers/html.jar",
             "/path/to/analyzers/java.jar",
             "/path/to/analyzers/javascript.jar",
             "/path/to/analyzers/python.jar",
         },
+        log_level = "OFF",
     },
     go = { 
       enabled = true 
+    },
+    html = {
+        enabled = true,
     },
     java = {
         enabled = true,

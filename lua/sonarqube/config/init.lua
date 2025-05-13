@@ -4,8 +4,12 @@ local default = {
     lsp = {
         cmd = { vim.fn.exepath("sonarlint-ls") },
         capabilities = vim.lsp.protocol.make_client_capabilities(),
+        log_level = "OFF",
     },
     go = {
+        enabled = true,
+    },
+    html = {
         enabled = true,
     },
     java = {
