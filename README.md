@@ -4,6 +4,7 @@
 **Key Features:**
 - [x] Go support
 - [x] Java support
+- [x] JavaScript support
 - [x] Python support
 
 # Configuration
@@ -18,6 +19,7 @@ require('sonarqube').setup({
             "-analyzers",
             "/path/to/analyzers/go.jar",
             "/path/to/analyzers/java.jar",
+            "/path/to/analyzers/javascript.jar",
             "/path/to/analyzers/python.jar",
         },
     },
@@ -27,6 +29,10 @@ require('sonarqube').setup({
     java = {
         enabled = true,
         await_jdtls = true 
+    },
+    javascript = {
+        enabled = true, -- Requires node >= 18.17.0
+        clientNodePath = vim.fn.exepath("node")
     },
     python = {
         enabled = true 

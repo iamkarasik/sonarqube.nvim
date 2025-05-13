@@ -12,6 +12,7 @@ M.setup = function(opts)
     -- stylua: ignore start
     if opts.go.enabled then require("sonarqube.go").setup(opts.go) end
     if opts.java.enabled then require("sonarqube.java").setup(opts.java) end
+    if opts.javascript.enabled then require("sonarqube.javascript").setup(opts.javascript) end
     if opts.python.enabled then require("sonarqube.python").setup(opts.python) end
     -- stylua: ignore end
 

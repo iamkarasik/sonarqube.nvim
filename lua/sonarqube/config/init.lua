@@ -12,6 +12,10 @@ local default = {
         enabled = true,
         await_jdtls = true,
     },
+    javascript = {
+        enabled = true,
+        clientNodePath = vim.fn.exepath("node")
+    },
     python = {
         enabled = true,
     },
