@@ -3,7 +3,8 @@
 
 **Key Features:**
 - [x] Go support
-- [x] Html support
+- [x] HTML support
+- [x] IAC support
 - [x] Java support
 - [x] JavaScript support
 - [x] Python support
@@ -20,6 +21,7 @@ require('sonarqube').setup({
             "-analyzers",
             "/path/to/analyzers/go.jar",
             "/path/to/analyzers/html.jar",
+            "/path/to/analyzers/iac.jar",
             "/path/to/analyzers/java.jar",
             "/path/to/analyzers/javascript.jar",
             "/path/to/analyzers/python.jar",
@@ -27,9 +29,14 @@ require('sonarqube').setup({
         log_level = "OFF",
     },
     go = { 
-      enabled = true 
+        enabled = true 
     },
     html = {
+        enabled = true,
+    },
+    iac = {
+        -- Docker analysis only works on 'Dockerfile'
+        -- All supported files: https://github.com/SonarSource/sonar-iac
         enabled = true,
     },
     java = {

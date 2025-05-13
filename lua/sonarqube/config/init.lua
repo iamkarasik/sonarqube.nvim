@@ -12,13 +12,16 @@ local default = {
     html = {
         enabled = true,
     },
+    iac = {
+        enabled = true,
+    },
     java = {
         enabled = true,
         await_jdtls = true,
     },
     javascript = {
         enabled = true,
-        clientNodePath = vim.fn.exepath("node")
+        clientNodePath = vim.fn.exepath("node"),
     },
     python = {
         enabled = true,
