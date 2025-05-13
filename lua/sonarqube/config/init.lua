@@ -6,6 +6,12 @@ local default = {
         capabilities = vim.lsp.protocol.make_client_capabilities(),
         log_level = "OFF",
     },
+    csharp = {
+        enabled = true,
+        omnisharpDirectory = "",
+        csharpOssPath = "",
+        csharpEnterprisePath = "",
+    },
     go = {
         enabled = true,
     },

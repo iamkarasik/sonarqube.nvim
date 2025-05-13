@@ -2,6 +2,7 @@
 `sonarqube` integrates with the [sonarlint-language-server](https://github.com/SonarSource/sonarlint-language-server) to deliver real-time static analysis and code actions directly in neovim.
 
 **Key Features:**
+- [x] C# support
 - [x] Go support
 - [x] HTML support
 - [x] IAC support
@@ -33,6 +34,12 @@ require('sonarqube').setup({
             "/path/to/analyzers/xml.jar",
         },
         log_level = "OFF",
+    },
+    csharp = {
+        enabled = true,
+        omnisharpDirectory = "/path/to/omnisharp",
+        csharpOssPath = "/path/to/analyzers/sonarcsharp.jar",
+        csharpEnterprisePath = "/path/to/analyzers/csharpenterprise.jar",
     },
     go = { 
         enabled = true 
