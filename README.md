@@ -3,6 +3,7 @@
 
 **Key Features:**
 - [x] Go support
+- [x] Java support
 - [x] Python support
 
 # Configuration
@@ -16,11 +17,20 @@ require('sonarqube').setup({
             "-stdio",
             "-analyzers",
             "/path/to/analyzers/go.jar",
+            "/path/to/analyzers/java.jar",
             "/path/to/analyzers/python.jar",
         },
     },
-    go = { enabled = true },
-    python = { enabled = true },
+    go = { 
+      enabled = true 
+    },
+    java = {
+        enabled = true,
+        await_jdtls = true 
+    },
+    python = {
+        enabled = true 
+    },
 })
 ```
 

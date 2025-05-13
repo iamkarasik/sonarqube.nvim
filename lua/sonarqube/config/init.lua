@@ -5,8 +5,16 @@ local default = {
         cmd = { vim.fn.exepath("sonarlint-ls") },
         capabilities = vim.lsp.protocol.make_client_capabilities(),
     },
-    go = { enabled = true },
-    python = { enabled = true },
+    go = {
+        enabled = true,
+    },
+    java = {
+        enabled = true,
+        await_jdtls = true,
+    },
+    python = {
+        enabled = true,
+    },
 }
 
 local config = default
