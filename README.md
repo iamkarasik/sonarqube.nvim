@@ -7,6 +7,7 @@
 - [x] IAC support
 - [x] Java support
 - [x] JavaScript support
+- [x] PHP support
 - [x] Python support
 - [x] Text support
 - [x] XML support
@@ -26,6 +27,7 @@ require('sonarqube').setup({
             "/path/to/analyzers/iac.jar",
             "/path/to/analyzers/java.jar",
             "/path/to/analyzers/javascript.jar",
+            "/path/to/analyzers/php.jar",
             "/path/to/analyzers/python.jar",
             "/path/to/analyzers/text.jar",
             "/path/to/analyzers/xml.jar",
@@ -50,6 +52,9 @@ require('sonarqube').setup({
     javascript = {
         enabled = true, -- Requires node >= 18.17.0
         clientNodePath = vim.fn.exepath("node")
+    },
+    php = {
+        enabled = true,
     },
     python = {
         enabled = true 

@@ -15,6 +15,7 @@ M.setup = function(opts)
     if opts.iac.enabled then require("sonarqube.iac").setup(opts.iac) end
     if opts.java.enabled then require("sonarqube.java").setup(opts.java) end
     if opts.javascript.enabled then require("sonarqube.javascript").setup(opts.javascript) end
+    if opts.php.enabled then require("sonarqube.php").setup(opts.php) end
     if opts.python.enabled then require("sonarqube.python").setup(opts.python) end
     if opts.text.enabled then require("sonarqube.text").setup(opts.text) end
     if opts.xml.enabled then require("sonarqube.xml").setup(opts.xml) end

@@ -23,6 +23,9 @@ local default = {
         enabled = true,
         clientNodePath = vim.fn.exepath("node"),
     },
+    php = {
+        enabled = true,
+    },
     python = {
         enabled = true,
     },
