@@ -75,5 +75,13 @@ require('sonarqube').setup({
 })
 ```
 
+# TODO
+- [ ] Configure rules
+- [ ] Implement Actions - Toggle rule
+- [ ] Implement handler - sonarlint/showRuleDescription
+- [ ] Implement handler - sonarlint/needCompilationDatabase
+- [ ] Support C/C++
+- [ ] Commands to download sonarlint server/analyzers
+
 # Special Thanks
 - [@schrieveslaach](https://github.com/schrieveslaach/) - [sonarlint.nvim](https://gitlab.com/schrieveslaach/sonarlint.nvim) was used as inspiration
