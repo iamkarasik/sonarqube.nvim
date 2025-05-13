@@ -33,7 +33,7 @@ require('sonarqube').setup({
             "/path/to/analyzers/text.jar",
             "/path/to/analyzers/xml.jar",
         },
-	-- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		    -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
         log_level = "OFF",
     },
     csharp = {
