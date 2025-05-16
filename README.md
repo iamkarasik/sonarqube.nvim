@@ -1,11 +1,11 @@
 # sonarqube
 `sonarqube` integrates with the [sonarlint-language-server](https://github.com/SonarSource/sonarlint-language-server) to deliver real-time static analysis and code actions directly in neovim.
 
-# Requirements
+## Requirements
 - [NeoVim](https://neovim.io/) >= 0.10
 - [Java](https://adoptopenjdk.net/releases.html) >= 11 (Required in order to run the sonarlint-language-server)
 
-# Key Features
+## Key Features
 - [x] C# support
 - [x] Go support
 - [x] HTML support
@@ -18,8 +18,9 @@
 - [x] XML support
 - [x] Commands to download sonarlint server/analyzers
 
-# Installation
-Install with your favourite package manager
+## Installation
+
+### Install with your favourite package manager
 
 [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
@@ -29,17 +30,23 @@ Install with your favourite package manager
 }
 ```
 
-Then run `:SonarQubeInstallLsp`
+### Install the sonarlint-language-server
 
-# Configuration
+#### Using the plugin (Recommended)
+If you do not already have the sonarlint-language-server, you can run `:SonarQubeInstallLsp`
 
-## Set up using the defaults
+#### Manually
+Download/Install the extension from the [github releases](https://github.com/SonarSource/sonarlint-vscode/releases)
+
+## Configuration
+
+### Default Configuration (Recommended)
 This is recommended when installing the LSP via `:SonarQubeInstallLsp`
 ```lua
 require('sonarqube').setup({})
 ```
 
-## Override the defaults
+### Override Default Configuration
 ```lua
 require('sonarqube').setup({
     lsp = {
@@ -102,12 +109,12 @@ require('sonarqube').setup({
 })
 ```
 
-# TODO
+## TODO
 - [ ] Configure rules
 - [ ] Implement Actions - Toggle rule
 - [ ] Implement handler - sonarlint/showRuleDescription
 - [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
 
-# Special Thanks
+## Special Thanks
 - [@schrieveslaach](https://github.com/schrieveslaach/) - [sonarlint.nvim](https://gitlab.com/schrieveslaach/sonarlint.nvim) was used as inspiration
