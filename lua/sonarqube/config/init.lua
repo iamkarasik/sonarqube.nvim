@@ -65,6 +65,9 @@ local config = default
 
 function M.setup(opts)
     config = vim.tbl_deep_extend("force", default, opts or {})
+    vim.api.nvim_create_user_command("SonarQubeShowConfig", function()
+        print(vim.inspect(config))
+    end, {})
 end
 
 return setmetatable(M, {
