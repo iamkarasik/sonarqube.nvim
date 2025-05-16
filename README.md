@@ -1,7 +1,11 @@
 # sonarqube
 `sonarqube` integrates with the [sonarlint-language-server](https://github.com/SonarSource/sonarlint-language-server) to deliver real-time static analysis and code actions directly in neovim.
 
-**Key Features:**
+# Requirements
+- [NeoVim](https://neovim.io/) >= 0.10
+- [Java](https://adoptopenjdk.net/releases.html) >= 11 (Required in order to run the sonarlint-language-server)
+
+# Key Features
 - [x] C# support
 - [x] Go support
 - [x] HTML support
@@ -12,6 +16,20 @@
 - [x] Python support
 - [x] Text support
 - [x] XML support
+- [x] Commands to download sonarlint server/analyzers
+
+# Installation
+Install with your favourite package manager
+
+[lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{
+    "iamkarasik/sonarqube.nvim",
+    opts = {}
+}
+```
+
+Then run `:SonarQubeInstallLsp`
 
 # Configuration
 ```lua
@@ -82,7 +100,6 @@ require('sonarqube').setup({
 - [ ] Implement handler - sonarlint/showRuleDescription
 - [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
-- [ ] Commands to download sonarlint server/analyzers
 
 # Special Thanks
 - [@schrieveslaach](https://github.com/schrieveslaach/) - [sonarlint.nvim](https://gitlab.com/schrieveslaach/sonarlint.nvim) was used as inspiration
