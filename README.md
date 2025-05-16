@@ -32,6 +32,14 @@ Install with your favourite package manager
 Then run `:SonarQubeInstallLsp`
 
 # Configuration
+
+## Set up using the defaults
+This is recommended when installing the LSP via `:SonarQubeInstallLsp`
+```lua
+require('sonarqube').setup({})
+```
+
+## Override the defaults
 ```lua
 require('sonarqube').setup({
     lsp = {
