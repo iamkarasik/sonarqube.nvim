@@ -32,21 +32,21 @@
 
 ### Install the sonarlint-language-server
 
-#### Using the plugin (Recommended)
+#### Options 1: Using the plugin (Recommended)
 If you do not already have the sonarlint-language-server, you can run `:SonarQubeInstallLsp`
 
-#### Manually
+#### Option 2: Manually install from GitHub
 Download/Install the extension from the [github releases](https://github.com/SonarSource/sonarlint-vscode/releases)
 
 ## Configuration
 
-### Default Configuration (Recommended)
+### Option 1: Default Configuration (Recommended)
 This is recommended when installing the LSP via `:SonarQubeInstallLsp`
 ```lua
 require('sonarqube').setup({})
 ```
 
-### Override Default Configuration
+### Option 2: Override Default Configuration
 ```lua
 require('sonarqube').setup({
     lsp = {
