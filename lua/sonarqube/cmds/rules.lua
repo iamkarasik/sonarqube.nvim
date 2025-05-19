@@ -12,13 +12,13 @@ end
 M.list_all_rules = function()
     local client = vim.lsp.get_clients({ name = "sonarqube" })
     if #client == 0 then
-        vim.notify("Failed to run SonarQubeShowAllRules: SonarQube LSP is not running", "ERROR")
+        vim.notify("Failed to run SonarQubeListAllRules: SonarQube LSP is not running", "ERROR")
         return
     end
 
     client[1].request("sonarlint/listAllRules", {}, function(err, res)
         if err ~= nil then
-            vim.notify("Failed to run SonarQubeShowAllRules: SonarQube LSP returned error", "ERROR")
+            vim.notify("Failed to run SonarQubeListAllRules: SonarQube LSP returned error", "ERROR")
             return
         end
 
