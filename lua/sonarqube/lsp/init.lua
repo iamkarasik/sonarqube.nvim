@@ -22,7 +22,8 @@ M.setup = function(opts)
     if opts.xml.enabled then require("sonarqube.xml").setup(opts.xml) end
     -- stylua: ignore end
 
-    require("sonarqube.rules").setup(opts.rules)
+    local rules = require("sonarqube.rules")
+    rules.setup(opts.rules)
     local cfg = require("sonarqube.lsp.server")
 
     vim.api.nvim_create_autocmd("FileType", {
@@ -74,6 +75,8 @@ M.setup = function(opts)
                 bufnr = opt.buf,
                 silent = true,
             })
+
+            vim.api.nvim_create_user_command("SonarQubeListAllRules", rules.list_all_rules, {})
         end,
     })
 end

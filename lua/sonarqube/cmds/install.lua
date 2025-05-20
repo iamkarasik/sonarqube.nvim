@@ -39,7 +39,7 @@ local download_vsix = function(releases)
     end)
 end
 
-M.install_lsp = function()
+local install_lsp = function()
     if vim.fn.exepath("curl") == not_found then
         vim.notify("Unable to Install SonarQube LSP: curl command not found", "ERROR")
         return
@@ -69,6 +69,10 @@ M.install_lsp = function()
             end
         end)
     end)
+end
+
+M.setup = function(_)
+    vim.api.nvim_create_user_command("SonarQubeInstallLsp", install_lsp, {})
 end
 
 return M
