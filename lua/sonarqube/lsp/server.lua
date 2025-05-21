@@ -2,6 +2,9 @@ local M = {
     filetypes = {},
     handlers = {},
     root_files = { ".git" },
+    settings = {
+        sonarlint = {},
+    },
     init_options = {
         productKey = "sonarqube",
         productName = "sonarqube",
@@ -81,6 +84,14 @@ end
 
 M.register_init_opt = function(key, value)
     M.init_options[key] = value
+end
+
+M.did_change_configuration = function()
+    local clients = vim.lsp.get_clients({ name = "sonarqube" })
+    if #clients == 0 then
+        return
+    end
+    clients[1].notify("workspace/didChangeConfiguration", M.settings)
 end
 
 local log_message = function(message, log_level)
