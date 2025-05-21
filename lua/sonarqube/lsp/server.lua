@@ -14,6 +14,14 @@ local M = {
     },
 }
 
+local log_levels = {
+    DEBUG = 1,
+    INFO = 2,
+    WARN = 3,
+    ERROR = 4,
+    OFF = 10,
+}
+
 M.handlers["sonarlint/canShowMissingRequirementsNotification"] = function()
     return false
 end
@@ -49,8 +57,7 @@ M.handlers["sonarlint/filterOutExcludedFiles"] = function(_, params, _, _)
     return params
 end
 
-M.handlers["sonarlint/showRuleDescription"] = function(_, params, _, _)
-end
+M.handlers["sonarlint/showRuleDescription"] = function(_, params, _, _) end
 
 M.handlers["sonarlint/needCompilationDatabase"] = function(_, _, ctx)
     return nil
@@ -74,6 +81,22 @@ end
 
 M.register_init_opt = function(key, value)
     M.init_options[key] = value
+end
+
+local log_message = function(message, log_level)
+    local first_space = message:find(" ")
+    local lvl = message:sub(2, first_space - 1):upper()
+
+    if log_levels[lvl] >= log_levels[log_level:upper()] then
+        local closing_bracket = message:find("]")
+        vim.notify(message:sub(closing_bracket + 2), lvl:lower())
+    end
+end
+
+M.setup = function(opts)
+    M.register_handler("window/logMessage", function(_, req)
+        log_message(req.message, opts.log_level)
+    end)
 end
 
 return M
