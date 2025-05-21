@@ -41,16 +41,7 @@ M.setup = function(opts)
                 init_options = server.init_options,
                 handlers = server.handlers,
                 autostart = true,
-                on_attach = function()
-                    client = vim.lsp.get_clients({ name = "sonarqube" })[1]
-                    client.notify("workspace/didChangeConfiguration", {
-                        settings = {
-                            sonarlint = {
-                                rules = vim.empty_dict(),
-                            },
-                        },
-                    })
-                end,
+                on_attach = server.did_change_configuration,
             }
 
             vim.lsp.start(cfg, {
