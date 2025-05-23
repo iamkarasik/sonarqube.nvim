@@ -56,10 +56,6 @@ M.handlers["sonarlint/showRuleDescription"] = function(_, req, _, _)
     vim.ui.open(string.format(uri, req.key, req.key))
 end
 
-M.handlers["sonarlint/needCompilationDatabase"] = function(_, _, ctx)
-    return nil
-end
-
 M.register_handler = function(name, fn)
     M.handlers[name] = fn
 end

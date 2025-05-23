@@ -10,6 +10,7 @@ local default = {
             extension_dir .. "/server/sonarlint-ls.jar",
             "-stdio",
             "-analyzers",
+            extension_dir .. "/analyzers/sonarcfamily.jar",
             extension_dir .. "/analyzers/sonargo.jar",
             extension_dir .. "/analyzers/sonarhtml.jar",
             extension_dir .. "/analyzers/sonariac.jar",
@@ -26,6 +27,22 @@ local default = {
     },
     rules = {
         enabled = true,
+    },
+    cfamily = {
+        enabled = true,
+        root_files = {
+            "CMakeLists.txt",
+            "Makefile",
+            "build.ninja",
+            "build/",
+            "compile_commands.json",
+            "configure",
+            "configure.ac",
+            "configure.in",
+            "makefile",
+            "meson.build",
+            "out/",
+        },
     },
     csharp = {
         enabled = true,

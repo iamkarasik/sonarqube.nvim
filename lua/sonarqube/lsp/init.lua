@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function(opts)
     -- stylua: ignore start
+    if opts.cfamily.enabled then require("sonarqube.cfamily").setup(opts.cfamily) end
     if opts.csharp.enabled then require("sonarqube.csharp").setup(opts.csharp) end
     if opts.go.enabled then require("sonarqube.go").setup(opts.go) end
     if opts.html.enabled then require("sonarqube.html").setup(opts.html) end

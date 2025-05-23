@@ -89,6 +89,9 @@ require('sonarqube').setup({
         },
 	["java:S106"] = { enabled = false },
     },
+    cfamily = {
+        enabled = true,
+    },
     csharp = {
         enabled = true,
         omnisharpDirectory = "/path/to/omnisharp",
