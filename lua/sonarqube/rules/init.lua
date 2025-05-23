@@ -60,10 +60,36 @@ M.list_all_rules = function()
 end
 
 M.setup = function(opts)
+    local server = require("sonarqube.lsp.server")
     if opts.enabled == false then
-        require("sonarqube.lsp.server").settings.sonarlint = {
-            rules = {},
+        server.settings = {
+            sonarlint = {
+                rules = {},
+            },
         }
+        return
+    end
+
+    local count = 0
+    local rules = {}
+    for rule_key, rule_val in pairs(opts) do
+        if rule_key ~= "enabled" then
+            if rule_val.enabled ~= nil then
+                count = count + 1
+                rules[rule_key] = {
+                    level = rule_val.enabled and "on" or "off",
+                    parameters = rule_val.parameters,
+                }
+            end
+        end
+    end
+
+    if count > 0 then
+        server.settings = vim.tbl_deep_extend("force", server.settings, {
+            sonarlint = {
+                rules = rules,
+            },
+        })
     end
 end
 
