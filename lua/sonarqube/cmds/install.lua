@@ -14,14 +14,16 @@ local unzip_vsix = function()
     vim.notify("Unpacking SonarQube LSP")
 
     vim.system({ "unzip", "-o", vsix_path, "-d", sonarqube_dir }, {}, function(result)
-        if result.code ~= 0 then
-            vim.notify("Unable to unpack SonarQube LSP", "ERROR")
-            return
-        end
+        vim.schedule(function()
+            if result.code ~= 0 then
+                vim.notify("Unable to unpack SonarQube LSP", "ERROR")
+                return
+            end
 
-        if vim.loop.fs_stat(sonarqube_dir .. "/extension") ~= nil then
-            vim.notify("Successfully installed SonarQube LSP")
-        end
+            if vim.loop.fs_stat(sonarqube_dir .. "/extension") ~= nil then
+                vim.notify("Successfully installed SonarQube LSP")
+            end
+        end)
     end)
 end
 
@@ -29,13 +31,16 @@ local download_vsix = function(releases)
     vim.notify("Downloading SonarQube LSP [version " .. releases.name .. "]")
 
     local url = string.format(sonarqube_vsix_url, releases.tag_name, releases.name)
-    vim.system({ "curl", "-L", "-o", vsix_path, url }, {}, function(result)
-        if result.code ~= 0 then
-            vim.notify("Unable to download SonarQube LSP: Failed to download vsix", "ERROR")
-            return
-        end
 
-        unzip_vsix()
+    vim.system({ "curl", "-L", "-o", vsix_path, url }, {}, function(result)
+        vim.schedule(function()
+            if result.code ~= 0 then
+                vim.notify("Unable to download SonarQube LSP: Failed to download vsix", "ERROR")
+                return
+            end
+
+            unzip_vsix()
+        end)
     end)
 end
 
@@ -57,12 +62,12 @@ local install_lsp = function()
         "-sL",
         "https://api.github.com/repos/SonarSource/sonarlint-vscode/releases/latest",
     }, {}, function(result)
-        if result.code ~= 0 then
-            vim.notify("Unable to download SonarQube LSP: Failed to get releases", "ERROR")
-            return
-        end
-
         vim.schedule(function()
+            if result.code ~= 0 then
+                vim.notify("Unable to download SonarQube LSP: Failed to get releases", "ERROR")
+                return
+            end
+
             local ok, parsed = pcall(vim.fn.json_decode, result.stdout)
             if ok then
                 download_vsix(parsed)
