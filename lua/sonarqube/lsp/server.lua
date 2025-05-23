@@ -1,10 +1,9 @@
 local M = {
+    commands = {},
     filetypes = {},
     handlers = {},
     root_files = { ".git" },
-    settings = {
-        sonarlint = {},
-    },
+    settings = {},
     init_options = {
         productKey = "sonarqube",
         productName = "sonarqube",
@@ -78,12 +77,14 @@ M.register_init_opt = function(key, value)
     M.init_options[key] = value
 end
 
-M.did_change_configuration = function()
-    local clients = vim.lsp.get_clients({ name = "sonarqube" })
-    if #clients == 0 then
+M.did_change_configuration = function(client)
+    local sonarqube = client or vim.lsp.get_clients({ name = "sonarqube" })[1]
+    if not sonarqube then
         return
     end
-    clients[1].notify("workspace/didChangeConfiguration", M.settings)
+    sonarqube.notify("workspace/didChangeConfiguration", {
+        settings = M.settings,
+    })
 end
 
 local log_message = function(message, log_level)
@@ -94,6 +95,19 @@ local log_message = function(message, log_level)
         local closing_bracket = message:find("]")
         vim.notify(message:sub(closing_bracket + 2), lvl:lower())
     end
+end
+
+M.commands["SonarLint.DeactivateRule"] = function(rule, ctx)
+    local sonarqube = vim.lsp.get_client_by_id(ctx.client_id)
+    M.settings = vim.tbl_deep_extend("force", M.settings, {
+        sonarlint = {
+            rules = {
+                [rule.arguments[1]] = { level = "off" },
+            },
+        },
+    })
+    sonarqube.settings = M.settings
+    M.did_change_configuration(sonarqube)
 end
 
 M.setup = function(opts)

@@ -24,6 +24,9 @@ local default = {
         capabilities = vim.lsp.protocol.make_client_capabilities(),
         log_level = "OFF",
     },
+    rules = {
+        enabled = true,
+    },
     csharp = {
         enabled = true,
         omnisharpDirectory = extension_dir .. "/omnisharp",
