@@ -35,11 +35,13 @@ M.setup = function(opts)
             local cfg = {
                 name = "sonarqube",
                 cmd = opts.lsp.cmd,
+                commands = server.commands,
                 root_dir = root,
                 capabilities = opts.lsp.capabilities,
                 filetypes = server.filetypes,
                 init_options = server.init_options,
                 handlers = server.handlers,
+                settings = server.settings,
                 autostart = true,
                 on_attach = server.did_change_configuration,
             }

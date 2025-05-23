@@ -13,6 +13,7 @@
 - [x] Text support
 - [x] XML support
 - [x] Commands to download sonarlint server/analyzers (requires [NeoVim](https://neovim.io/) >= 0.10)
+- [x] Deactivate rule
 
 ## Installation
 
@@ -64,6 +65,9 @@ require('sonarqube').setup({
         -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
         log_level = "OFF",
     },
+    rules = {
+        enabled = true,
+    },
     csharp = {
         enabled = true,
         omnisharpDirectory = "/path/to/omnisharp",
@@ -106,7 +110,6 @@ require('sonarqube').setup({
 
 ## TODO
 - [ ] Configure rules
-- [ ] Implement Actions - Toggle rule
 - [ ] Implement handler - sonarlint/showRuleDescription
 - [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
