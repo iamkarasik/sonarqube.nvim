@@ -16,7 +16,7 @@ local unzip_vsix = function()
     vim.system({ "unzip", "-o", vsix_path, "-d", sonarqube_dir }, {}, function(result)
         vim.schedule(function()
             if result.code ~= 0 then
-                vim.notify("Unable to unpack SonarQube LSP", "ERROR")
+                vim.notify("Unable to unpack SonarQube LSP", vim.log.levels.ERROR)
                 return
             end
 
@@ -35,7 +35,10 @@ local download_vsix = function(releases)
     vim.system({ "curl", "-L", "-o", vsix_path, url }, {}, function(result)
         vim.schedule(function()
             if result.code ~= 0 then
-                vim.notify("Unable to download SonarQube LSP: Failed to download vsix", "ERROR")
+                vim.notify(
+                    "Unable to download SonarQube LSP: Failed to download vsix",
+                    vim.log.levels.ERROR
+                )
                 return
             end
 
@@ -46,12 +49,12 @@ end
 
 local install_lsp = function()
     if vim.fn.exepath("curl") == not_found then
-        vim.notify("Unable to Install SonarQube LSP: curl command not found", "ERROR")
+        vim.notify("Unable to Install SonarQube LSP: curl command not found", vim.log.levels.ERROR)
         return
     end
 
     if vim.fn.exepath("unzip") == not_found then
-        vim.notify("Unable to Install SonarQube LSP: unzip command not found", "ERROR")
+        vim.notify("Unable to Install SonarQube LSP: unzip command not found", vim.log.levels.ERROR)
         return
     end
 
@@ -64,7 +67,10 @@ local install_lsp = function()
     }, {}, function(result)
         vim.schedule(function()
             if result.code ~= 0 then
-                vim.notify("Unable to download SonarQube LSP: Failed to get releases", "ERROR")
+                vim.notify(
+                    "Unable to download SonarQube LSP: Failed to get releases",
+                    vim.log.levels.ERROR
+                )
                 return
             end
 
