@@ -13,7 +13,7 @@
 - [x] Text support
 - [x] XML support
 - [x] Commands to download sonarlint server/analyzers (requires [NeoVim](https://neovim.io/) >= 0.10)
-- [x] Deactivate rule
+- [x] Rules: Disable All, Toggle Rule (Code Action), configure in setup
 
 ## Installation
 
@@ -67,6 +67,15 @@ require('sonarqube').setup({
     },
     rules = {
         enabled = true,
+        ["typescript:S103"] = { -- Lines should not be too long (Default Value: 180)
+            enabled = true,
+            parameters = { maximumLineLength = 100 }
+        },
+        ["java:S1188"] = { -- Anonymous classes should not have too many lines (Default Value: 20)
+            enabled = true,
+            parameters = { Max: 40 }
+        },
+	["java:S106"] = { enabled = false },
     },
     csharp = {
         enabled = true,
@@ -109,7 +118,6 @@ require('sonarqube').setup({
 ```
 
 ## TODO
-- [ ] Configure rules
 - [ ] Implement handler - sonarlint/showRuleDescription
 - [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
