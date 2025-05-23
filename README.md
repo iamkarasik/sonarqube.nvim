@@ -64,6 +64,17 @@ require('sonarqube').setup({
         },
         -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
         log_level = "OFF",
+        handlers = {
+            -- Custom handler to show rule description
+            -- The `res` argument contains various keys containing html that can be rendered in your favourite neovim html plugin 
+            -- Alternatively, open the rule in the browser using your favourite sonarqube rule website (example below)
+            ["sonarlint/showRuleDescription"] = function(err, res, ctx, cfg)
+                local uri = "https://rules.sonarsource.com/%s/RSPEC-%s"
+                local lang = res.languageKey
+                local spec = string.match(res.key, "S(%d+)")
+                vim.ui.open(string.format(uri, lang, spec))
+            end,
+        },
     },
     rules = {
         enabled = true,

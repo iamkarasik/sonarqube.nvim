@@ -51,7 +51,10 @@ M.handlers["sonarlint/filterOutExcludedFiles"] = function(_, params, _, _)
     return params
 end
 
-M.handlers["sonarlint/showRuleDescription"] = function(_, params, _, _) end
+M.handlers["sonarlint/showRuleDescription"] = function(_, req, _, _)
+    local uri = "https://next.sonarqube.com/sonarqube/coding_rules?q=%s&open=%s"
+    vim.ui.open(string.format(uri, req.key, req.key))
+end
 
 M.handlers["sonarlint/needCompilationDatabase"] = function(_, _, ctx)
     return nil
@@ -114,6 +117,14 @@ M.setup = function(opts)
     M.register_handler("window/logMessage", function(_, req)
         log_message(req.message, opts.log_level)
     end)
+
+    if opts.handlers ~= nil then
+        local handler = "sonarlint/showRuleDescription"
+        local fn = opts.handlers[handler]
+        if fn ~= nil and type(fn) == "function" then
+            M.register_handler(handler, fn)
+        end
+    end
 end
 
 return M
