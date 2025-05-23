@@ -13,6 +13,7 @@
 - [x] Text support
 - [x] XML support
 - [x] Commands to download sonarlint server/analyzers (requires [NeoVim](https://neovim.io/) >= 0.10)
+- [x] Configurable handler for sonarlint/showRuleDescription
 - [x] Rules: Disable All, Toggle Rule (Code Action), configure in setup
 
 ## Installation
@@ -129,7 +130,6 @@ require('sonarqube').setup({
 ```
 
 ## TODO
-- [ ] Implement handler - sonarlint/showRuleDescription
 - [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
 
