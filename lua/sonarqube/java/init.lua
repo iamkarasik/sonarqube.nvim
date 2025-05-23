@@ -38,7 +38,7 @@ local jdtls_java_project_getSettings = function(dependencies, settings)
         },
     }, function(err, res)
         if err ~= nil then
-            vim.notify("Failed to get java project settings", "WARN")
+            vim.notify("Failed to get java project settings", vim.log.levels.WARN)
             coroutine.resume(dependencies.co)
             return
         end
@@ -64,7 +64,7 @@ local jdtls_java_project_isTest = function(dependencies, settings)
         arguments = { dependencies.uri },
     }, function(err, res)
         if err ~= nil then
-            vim.notify("Failed to determine if buffer is a test file", "WARN")
+            vim.notify("Failed to determine if buffer is a test file", vim.log.levels.WARN)
             coroutine.resume(dependencies.co)
             return
         end

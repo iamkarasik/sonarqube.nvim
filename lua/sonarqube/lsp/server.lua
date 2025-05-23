@@ -17,14 +17,6 @@ local M = {
     },
 }
 
-local log_levels = {
-    DEBUG = 1,
-    INFO = 2,
-    WARN = 3,
-    ERROR = 4,
-    OFF = 10,
-}
-
 M.handlers["sonarlint/canShowMissingRequirementsNotification"] = function()
     return false
 end
@@ -98,7 +90,7 @@ local log_message = function(message, log_level)
     local first_space = message:find(" ")
     local lvl = message:sub(2, first_space - 1):upper()
 
-    if log_levels[lvl] >= log_levels[log_level:upper()] then
+    if vim.log.levels[lvl] >= vim.log.levels[log_level:upper()] then
         local closing_bracket = message:find("]")
         vim.notify(message:sub(closing_bracket + 2), lvl:lower())
     end
