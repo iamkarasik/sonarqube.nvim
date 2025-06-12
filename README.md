@@ -1,6 +1,8 @@
 # sonarqube
 `sonarqube` integrates with the [sonarlint-language-server](https://github.com/SonarSource/sonarlint-language-server) to deliver real-time static analysis and code actions directly in neovim.
 
+https://github-production-user-asset-6210df.s3.amazonaws.com/10507366/454176376-cda18dde-6bb9-49c8-8dfa-59d29d3d8750.mp4
+
 ## Key Features
 - [x] C# support
 - [x] Go support
