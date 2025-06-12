@@ -3,35 +3,43 @@
 
 https://github-production-user-asset-6210df.s3.amazonaws.com/10507366/454176376-cda18dde-6bb9-49c8-8dfa-59d29d3d8750.mp4
 
-## Key Features
-- [x] C# support
-- [x] Go support
-- [x] HTML support
-- [x] IAC support
-- [x] Java support
-- [x] JavaScript support
-- [x] PHP support
-- [x] Python support
-- [x] Text support
-- [x] XML support
-- [x] Commands to download sonarlint server/analyzers (requires [NeoVim](https://neovim.io/) >= 0.10)
-- [x] Configurable handler for sonarlint/showRuleDescription
-- [x] Rules: Disable All, Toggle Rule (Code Action), configure in setup
+<!-- TOC -->
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Rules](#rules)
+- [Key Features](#key-features)
+- [Commands](#commands)
+- [TODO](#todo)
+- [Special Thanks](#special-thanks)
+<!-- /TOC -->
 
 ## Installation
 
-### Install with your favourite package manager
+### 1. Install with your favourite package manager
 
 [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 {
     "iamkarasik/sonarqube.nvim",
+    config = function()
+      require("sonarqube").setup({})
+    end
 }
 ```
 
-### Install the sonarlint-language-server
+[packer.nvim](https://github.com/wbthomason/packer.nvim)
+```lua
+use {
+    "iamkarasik/sonarqube.nvim",
+    config = function()
+      require("sonarqube").setup({})
+    end
+}
+```
 
-#### Options 1: Using the plugin (Recommended)
+### 2. Install the sonarlint-language-server
+
+#### Option 1: Using the plugin (Recommended)
 If you do not already have the sonarlint-language-server, you can run `:SonarQubeInstallLsp`
 
 #### Option 2: Manually install from GitHub
@@ -79,18 +87,7 @@ require('sonarqube').setup({
             end,
         },
     },
-    rules = {
-        enabled = true,
-        ["typescript:S103"] = { -- Lines should not be too long (Default Value: 180)
-            enabled = true,
-            parameters = { maximumLineLength = 100 }
-        },
-        ["java:S1188"] = { -- Anonymous classes should not have too many lines (Default Value: 20)
-            enabled = true,
-            parameters = { Max: 40 }
-        },
-	["java:S106"] = { enabled = false },
-    },
+    rules = { enabled = true },
     csharp = {
         enabled = true,
         omnisharpDirectory = "/path/to/omnisharp",
@@ -131,9 +128,50 @@ require('sonarqube').setup({
 })
 ```
 
+## Rules
+Rules can be individually enabled or disabled, as well as optionally receive override parameters where applicable.
+Note that setting `rules.enabled = false` will disable all analysis.
+
+```lua
+require('sonarqube').setup({
+    rules = {
+        enabled = true,
+
+        -- Lines should not be too long (Default Value: 180)
+        ["typescript:S103"] = { enabled = true, parameters = { maximumLineLength = 100 } },
+
+        -- Anonymous classes should not have too many lines (Default Value: 20)
+        ["java:S1188"] = { enabled = true, parameters = { Max: 40 } },
+
+        -- Standard outputs should not be used directly to log anything
+        ["java:S106"] = { enabled = false },
+    }
+})
+```
+
+## Key Features
+- [x] C# support
+- [x] Go support
+- [x] HTML support
+- [x] IAC support
+- [x] Java support
+- [x] JavaScript support
+- [x] PHP support
+- [x] Python support
+- [x] Text support
+- [x] XML support
+- [x] Commands to download sonarlint server/analyzers (requires [NeoVim](https://neovim.io/) >= 0.10)
+- [x] Configurable handler for sonarlint/showRuleDescription
+- [x] Rules: Disable All, Toggle Rule (Code Action), configure in setup
+
+## Commands
+- `SonarQubeInstallLsp` - Install the LSP
+- `SonarQubeShowConfig` - Print the configuration
+- `SonarQubeListAllRules` - List all the registered rules
+
 ## TODO
-- [ ] Implement handler - sonarlint/needCompilationDatabase
 - [ ] Support C/C++
+- [ ] Show all locations for issue
 
 ## Special Thanks
 - [@schrieveslaach](https://github.com/schrieveslaach/) - [sonarlint.nvim](https://gitlab.com/schrieveslaach/sonarlint.nvim) was used as inspiration
