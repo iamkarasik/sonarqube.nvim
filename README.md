@@ -42,7 +42,10 @@ use {
 #### Option 1: Using the plugin (Recommended)
 If you do not already have the sonarlint-language-server, you can run `:SonarQubeInstallLsp`
 
-#### Option 2: Manually install from GitHub
+#### Option 2: Using [mason.nvim](https://github.com/mason-org/mason.nvim)
+Run `:MasonInstall sonarlint-language-server` then navigate to the [Mason Configuration](#mason-configuration)
+
+#### Option 3: Manually install from GitHub
 Download/Install the extension from the [github releases](https://github.com/SonarSource/sonarlint-vscode/releases)
 
 ## Configuration
@@ -124,6 +127,40 @@ require('sonarqube').setup({
     },
     xml = {
         enabled = true,
+    },
+})
+```
+
+## Mason Configuration
+```lua
+local extension_path = vim.fn.stdpath("data")
+    .. "/mason/packages/sonarlint-language-server/extension"
+
+require("sonarqube").setup({
+    lsp = {
+        cmd = {
+            vim.fn.exepath("java"),
+            "-jar",
+            extension_path .. "/server/sonarlint-ls.jar",
+            "-stdio",
+            "-analyzers",
+            extension_path .. "/analyzers/sonargo.jar",
+            extension_path .. "/analyzers/sonarhtml.jar",
+            extension_path .. "/analyzers/sonariac.jar",
+            extension_path .. "/analyzers/sonarjava.jar",
+            extension_path .. "/analyzers/sonarjavasymbolicexecution.jar",
+            extension_path .. "/analyzers/sonarjs.jar",
+            extension_path .. "/analyzers/sonarphp.jar",
+            extension_path .. "/analyzers/sonarpython.jar",
+            extension_path .. "/analyzers/sonartext.jar",
+            extension_path .. "/analyzers/sonarxml.jar",
+        },
+    },
+    csharp = {
+        enabled = true,
+        omnisharpDirectory = extension_path .. "/omnisharp",
+        csharpOssPath = extension_path .. "/analyzers/sonarcsharp.jar",
+        csharpEnterprisePath = extension_path .. "/analyzers/csharpenterprise.jar",
     },
 })
 ```
