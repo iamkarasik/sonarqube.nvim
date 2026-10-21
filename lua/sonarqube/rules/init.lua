@@ -19,7 +19,7 @@ M.list_all_rules = function()
         return
     end
 
-    client[1].request("sonarlint/listAllRules", {}, function(err, res)
+    require("sonarqube.util").request(client[1], "sonarlint/listAllRules", {}, function(err, res)
         if err ~= nil then
             vim.notify(
                 "Failed to run SonarQubeListAllRules: SonarQube LSP returned error",

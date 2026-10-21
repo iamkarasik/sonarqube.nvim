@@ -85,7 +85,7 @@ M.did_change_configuration = function(client)
     if not sonarqube then
         return
     end
-    sonarqube.notify("workspace/didChangeConfiguration", {
+    require("sonarqube.util").notify(sonarqube, "workspace/didChangeConfiguration", {
         settings = M.settings,
     })
 end
