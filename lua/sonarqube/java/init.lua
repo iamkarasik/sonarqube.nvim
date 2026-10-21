@@ -26,7 +26,7 @@ local register_jdtls_callback = function(_)
 end
 
 local jdtls_java_project_getSettings = function(dependencies, settings)
-    dependencies.jdtls.request("workspace/executeCommand", {
+    require("sonarqube.util").request(dependencies.jdtls, "workspace/executeCommand", {
         command = "java.project.getSettings",
         arguments = {
             dependencies.uri,
@@ -59,7 +59,7 @@ local jdtls_java_project_getSettings = function(dependencies, settings)
 end
 
 local jdtls_java_project_isTest = function(dependencies, settings)
-    dependencies.jdtls.request("workspace/executeCommand", {
+    require("sonarqube.util").request(dependencies.jdtls, "workspace/executeCommand", {
         command = "java.project.isTestFile",
         arguments = { dependencies.uri },
     }, function(err, res)

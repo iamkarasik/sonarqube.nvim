@@ -23,4 +23,20 @@ M.create_win = function(buf)
     return win
 end
 
+M.notify = function(client, method, params)
+    if vim.fn.has("nvim-0.11") == 1 then
+        return client:notify(method, params)
+    else
+        return client.notify(method, params)
+    end
+end
+
+M.request = function(client, method, params, handler, bufnr)
+    if vim.fn.has("nvim-0.11") == 1 then
+        return client:request(method, params, handler, bufnr)
+    else
+        return client.request(method, params, handler, bufnr)
+    end
+end
+
 return M
